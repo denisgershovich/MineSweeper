@@ -1,0 +1,92 @@
+*{
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif; 
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.game-header{
+    width: 100%;
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    font-weight: 500;
+    color:#3b444b;
+}
+.app{
+    background-color: #f1f1f1;;
+    margin-top: 1%;
+    width: 510px;
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px #444;
+}
+.data-container{
+    display: flex;
+    justify-content: space-around ;
+    margin-top: 8px;
+}
+.data-container .box{
+   font-weight: 700;
+   display: block;
+}
+.box.lives{
+    width: 14%;
+}
+.levels-box{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.levels-box .box{
+    border: 1.4px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.levels-box .box:hover{
+    background-color: #d1d1d1;
+}
+.box.smily{
+    cursor: pointer;
+}
+.table-container{
+     height: 90%;
+}
+table{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100%;
+     width: 100%;
+}
+td{
+    text-align: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+.cell{
+   border: 1px solid black;
+   font-size: 20px;
+   font-weight: 700;
+   /* border-radius: 5px; */
+}
+.cell:hover{
+    background-color: #d1d1d1;
+}
+.cell.active{
+    background-color: #d1d1d1;
+}
+ span.mine{
+   display: none;
+}
+
