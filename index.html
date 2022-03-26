@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <title>Mines</title>
 </head>
-<body onload="initGame()">
+<body >
     <h1 class="game-header">Minesweeper</h1>
     <div class="app">
         <div class="data-container">
             <div class="box lives" > </div>
-            <div class="box smily" onclick="resetGame()"></div>
+            <div class="box smily" onclick="initGame()"></div>
             <div class="box stop-watch"></div>
         </div>
         <div class="levels-box">
@@ -27,6 +27,5 @@
 
  <script src="js/utilities.js" ></script> 
  <script src="js/game.js"></script> 
- <script src="js/mines.js"></script>
 </body>
 </html>

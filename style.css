@@ -73,6 +73,7 @@ td{
     cursor: pointer;
     width: 40px;
     height: 40px;
+    border: 1px solid black;
 }
 .cell{
    border: 1px solid black;
@@ -83,10 +84,13 @@ td{
 .cell:hover{
     background-color: #d1d1d1;
 }
-.cell.active{
+.active{
     background-color: #d1d1d1;
 }
- span.mine{
+ span{
    display: none;
+}
+.mine{
+    display: none;
 }
 
