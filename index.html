@@ -1,31 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Minesweeper - a classic puzzle game where you clear a board without detonating mines">
+    <meta name="keywords" content="minesweeper, puzzle game, strategy game">
+    <meta name="author" content="Minesweeper Game">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/game.js" as="script">
+    
     <link rel="stylesheet" href="style.css">
-    <title>Mines</title>
+    <title>Minesweeper - Classic Puzzle Game</title>
 </head>
-<body >
-    <h1 class="game-header">Minesweeper</h1>
-    <div class="app">
-        <div class="data-container">
-            <div class="box lives" > </div>
-            <div class="box smily" onclick="initGame()"></div>
-            <div class="box stop-watch"></div>
-        </div>
-        <div class="levels-box">
-            <div class="box beginner" data-level="beginner" onclick="getLevel(this)" >Beginner (4*4)</div>
-            <div class="box medium"   data-level="medium"   onclick="getLevel(this)"> Medium (8*8)</div>
-            <div class="box expert"   data-level="expert"   onclick="getLevel(this)""> Expert (12*12) </div>
-        </div>
-        <div class="table-container">
-            <table></table>
+<body>
+    <header>
+        <h1 class="game-header">Minesweeper</h1>
+    </header>
+    
+    <main class="app" role="main">
+        <!-- Game Status Bar -->
+        <section class="data-container" aria-label="Game Status">
+            <div class="box lives" aria-live="polite" aria-label="Lives remaining"></div>
+            <button class="box smily" onclick="initGame()" aria-label="Reset game" type="button"></button>
+            <div class="box stop-watch" aria-live="polite" aria-label="Game timer"></div>
+        </section>
+        
+        <!-- Difficulty Selection -->
+        <section class="levels-box" aria-label="Difficulty Selection">
+            <button class="box beginner" data-level="beginner" onclick="getLevel(this)" type="button" aria-pressed="true">
+                Beginner (4×4)
+            </button>
+            <button class="box medium" data-level="medium" onclick="getLevel(this)" type="button" aria-pressed="false">
+                Medium (8×8)
+            </button>
+            <button class="box expert" data-level="expert" onclick="getLevel(this)" type="button" aria-pressed="false">
+                Expert (12×12)
+            </button>
+        </section>
+        
+        <!-- Game Board -->
+        <section class="table-container" aria-label="Game Board">
+            <table role="grid" aria-label="Minesweeper game board">
+                <caption class="sr-only">Minesweeper game board with hidden mines</caption>
+            </table>
+        </section>
+    </main>
+
+    <!-- Screen reader only content -->
+    <div class="sr-only" aria-live="polite" id="game-status"></div>
+
+    <!-- Game Over Modal -->
+    <div id="game-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" style="display:none;">
+        <div class="modal-content">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+            <button id="modal-reset-btn" type="button">Reset Game</button>
         </div>
     </div>
-
- <script src="js/utilities.js" ></script> 
- <script src="js/game.js"></script> 
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>

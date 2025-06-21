@@ -2,11 +2,34 @@
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif; 
 }
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f5f5f5;
 }
+
+header {
+    width: 100%;
+}
+
 .game-header{
     width: 100%;
     text-align: center;
@@ -14,9 +37,11 @@ body{
     padding: 20px 10px;
     font-weight: 500;
     color:#3b444b;
+    margin: 0;
 }
+
 .app{
-    background-color: #f1f1f1;;
+    background-color: #f1f1f1;
     margin-top: 1%;
     width: 510px;
     height: 620px;
@@ -27,23 +52,28 @@ body{
     border-radius: 5px;
     box-shadow: 5px 5px 15px #444;
 }
+
 .data-container{
     display: flex;
-    justify-content: space-around ;
+    justify-content: space-around;
     margin-top: 8px;
 }
+
 .data-container .box{
    font-weight: 700;
    display: block;
 }
+
 .box.lives{
     width: 14%;
 }
+
 .levels-box{
     display: flex;
     justify-content: center;
     padding: 5px;
 }
+
 .levels-box .box{
     border: 1.4px solid black;
     border-radius: 5px;
@@ -51,46 +81,241 @@ body{
     padding: 5px;
     cursor: pointer;
     font-weight: 600;
+    background: none;
+    font-size: inherit;
+    transition: background-color 0.2s ease;
 }
 
 .levels-box .box:hover{
     background-color: #d1d1d1;
 }
+
+.levels-box .box:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
 .box.smily{
     cursor: pointer;
+    background: none;
+    border: none;
+    font-size: inherit;
 }
+
+.box.smily:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
 .table-container{
      height: 90%;
 }
+
 table{
     border: 1px solid black;
     border-radius: 5px;
     height: 100%;
-     width: 100%;
+    width: 100%;
+    border-collapse: collapse;
 }
+
 td{
     text-align: center;
     cursor: pointer;
     width: 40px;
     height: 40px;
     border: 1px solid black;
+    transition: background-color 0.1s ease;
 }
+
 .cell{
    border: 1px solid black;
    font-size: 20px;
    font-weight: 700;
-   /* border-radius: 5px; */
 }
+
 .cell:hover{
     background-color: #d1d1d1;
 }
+
+.cell:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 1px;
+}
+
 .active{
     background-color: #d1d1d1;
 }
- span{
+
+/* New styles for refactored game */
+.cell-content {
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.marked {
+    background-color: #ffeb3b;
+}
+
+.marked .cell-content {
+    color: #d32f2f;
+}
+
+/* Game over states */
+.game-won {
+    animation: winPulse 0.5s ease-in-out 3;
+}
+
+.game-lost {
+    animation: loseShake 0.5s ease-in-out 3;
+}
+
+@keyframes winPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes loseShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Number colors for mines around */
+.cell-content:not(:empty):not([data-content="💣"]):not([data-content="🚩"]) {
+    font-weight: bold;
+}
+
+.cell-content[data-content="1"] { color: #2196F3; }
+.cell-content[data-content="2"] { color: #4CAF50; }
+.cell-content[data-content="3"] { color: #FF9800; }
+.cell-content[data-content="4"] { color: #9C27B0; }
+.cell-content[data-content="5"] { color: #F44336; }
+.cell-content[data-content="6"] { color: #00BCD4; }
+.cell-content[data-content="7"] { color: #795548; }
+.cell-content[data-content="8"] { color: #607D8B; }
+
+span{
    display: none;
 }
+
 .mine{
     display: none;
+}
+
+/* Responsive design improvements */
+@media (max-width: 600px) {
+    .app {
+        width: 95%;
+        max-width: 400px;
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .levels-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .levels-box .box {
+        margin: 5px;
+        width: 80%;
+    }
+    
+    td {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .cell-content {
+        font-size: 14px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .game-won,
+    .game-lost,
+    .cell,
+    .levels-box .box {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .cell {
+        border: 2px solid #000;
+    }
+    
+    .active {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .marked {
+        background-color: #ffff00;
+        color: #000;
+    }
+}
+
+/* Modal styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+    text-align: center;
+    min-width: 280px;
+    max-width: 90vw;
+}
+
+#modal-title {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #3b444b;
+}
+
+#modal-desc {
+    margin: 1rem 0 2rem 0;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+#modal-reset-btn {
+    background: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#modal-reset-btn:hover, #modal-reset-btn:focus {
+    background: #005fa3;
+    outline: 2px solid #005fa3;
 }
 
