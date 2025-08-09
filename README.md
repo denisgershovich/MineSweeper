@@ -1,9 +1,8 @@
-# 🎮 Minesweeper - Classic Puzzle Game
+# Minesweeper - Classic Puzzle Game
 
 A modern, accessible implementation of the classic Minesweeper game built with vanilla JavaScript, HTML5, and CSS3.
 
-## 📁 Project Structure
-
+##  Project Structure
 ```
 MineSweeper/
 ├── index.html          # Main HTML file with semantic structure
@@ -14,12 +13,6 @@ MineSweeper/
 │   └── utilities.js    # Utility functions
 └── README.md           # This file
 ```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Modern web browser
-- Local web server (optional, for development)
 
 ### Installation
 1. Clone or download the project
